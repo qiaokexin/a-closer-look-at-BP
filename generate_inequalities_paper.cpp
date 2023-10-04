@@ -246,17 +246,17 @@ void generate_inequations(bool filtered, long long int sd, int numIneq_each){
         v_prime_error[index] = mod(v_prime[index]+ 2, pow(2, dv));
         v_primeprime_error = Decompress_q(v_prime_error[index], dv);
         m_prime[index] = Compress_q(mod(v_primeprime_error - dotproduct(s, u_primeprime)[index], q), 1);
-        int trial = 2;
+        
         while (m[index] == m_prime[index]) {           
             v_prime_error[index]++; 
-            trial++;
+            
             v_primeprime_error = Decompress_q(mod(v_prime_error[index], pow(2, dv)), dv);
             //calculate m'
             m_prime[index] = Compress_q(mod(v_primeprime_error - dotproduct(s, u_primeprime)[index], q), 1);
         };
         
         addN[index][collected] = v_prime_error[index] - v_prime[index] - 1;
-        if ((trial!=4) and (trial!=5)) cout<<trial<<endl;
+        
       
         delta_N = Decompress_q(mod(v_prime[index] + addN[index][collected], pow(2, dv)), dv) - Decompress_q(v_prime[index], dv);
         delta_Nadd1 = Decompress_q(mod(v_prime[index] + addN[index][collected]+1, pow(2, dv)), dv) - Decompress_q(v_prime[index], dv);
